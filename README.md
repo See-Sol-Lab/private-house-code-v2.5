@@ -1,0 +1,160 @@
+# Private House Code
+
+> **Write the feature. Do not build a bank around it.**
+>
+> **写一个功能，不要在它外面修一座银行金库。**
+
+Private House Code is a global coding Skill for Codex. It keeps ordinary feature work direct, maintainable, and proportionate to the task that actually exists.
+
+Agentic coding has a common failure mode: uncertainty turns into architecture. One feature becomes another abstraction, another source of truth, another fallback, another state, another worker, and another system a human must maintain.
+
+Private House Code changes the default:
+
+> **Every piece of complexity must be paid for by a current requirement, an observed failure, an existing contract, or a credible risk.**
+
+**Status:** V2.0 private test candidate.
+
+## The five product promises
+
+### 1. Coding only, but all coding
+
+Route it for planning, writing, editing, debugging, testing, refactoring, reviewing, and maintaining code—from professional repositories to scripts, prototypes, beginner work, vibe coding, and bounded changes inside large systems.
+
+Do not route it for ordinary conversation, emotional support, prose, translation, summarization, social-media writing, or general research and technical discussion that does not plan, change, or review code. Its engineering style must not bleed into normal dialogue.
+
+### 2. The fewest clear lines that correctly solve the task
+
+If one readable line is enough, use one readable line. If one function is enough, do not build a class hierarchy. If one path is enough, do not create several.
+
+This is not code golf. The target is the least conceptual and maintenance weight while preserving normal readability, debugging, correctness, and project conventions.
+
+### 3. No unpaid fallback machinery
+
+Push back on fallback chains, dual reads and writes, multiple parsers, legacy recovery, blanket retries, caches, recovery workers, and defensive state machines when no present requirement or evidence pays for them.
+
+A direct implementation that works does not need several imaginary escape routes around it.
+
+### 4. Less code and less token waste
+
+Keep routine calibration internal. Clear tasks should be executed directly, without an airport-security checklist, repeated requirements, speculative risk matrices, oversized plans, or unrelated tool calls.
+
+Use the smallest relevant reads, edits, and tests first. Expand only when the repository or evidence requires it.
+
+### 5. Code a human can understand and maintain
+
+Keep the main path easy to trace from input to processing to output. Use clear names, honest errors, explicit data sources, and abstractions with a current job.
+
+The task begins as “implement the requested behavior,” not “search for imaginary enemies.”
+
+## Who this is for
+
+- professional developers using Codex for features, fixes, maintenance, review, and refactoring
+- beginners who need working code without an accidental enterprise-architecture course
+- non-programmers and low-code users doing vibe coding
+- scripts, CLIs, desktop tools, personal apps, prototypes, and local automation
+- internal utilities and small-team services
+- bounded changes inside large professional repositories
+
+A repository does not need to be small. A small change inside a large system is still a small change.
+
+## Global default, evidence-based exception
+
+The default assumption is:
+
+> **This is a feature, repair, or bounded change—not a bank-scale architecture project.**
+
+The Skill still preserves real requirements at real boundaries: authentication, secrets, public input, path safety, irreversible operations, transactions, actual concurrency, released compatibility, money, health, safety, privacy, accessibility, legal, audit, regulatory, distributed, and availability obligations that genuinely apply.
+
+A trusted local settings file does not need a fortress. A public password-reset endpoint does not become safe because the app is small.
+
+Even inside a true bank-scale system, the Skill can keep a local change surgical. It protects the vault without making every drawer a blast door.
+
+## What it blocks by default
+
+Unless the current task genuinely needs them:
+
+- fallback chains, secondary truth sources, dual reads, dual writes, and dual runtimes
+- generic repository/service/manager/adapter/factory stacks for one implementation
+- unused plugin systems, strategy registries, and future-proof extension points
+- queues, polling, schedulers, background workers, and recovery services without a current job
+- caches, snapshots, blanket retries, failover, and self-healing state machines without evidence
+- distributed coordination in non-distributed work
+- lifecycle-state explosions for failures the product does not handle
+- drive-by refactors hidden inside a focused feature or bug fix
+
+## Routing and the 100% limit
+
+`SKILL.md` uses broad positive coding triggers plus explicit non-code exclusions. That is the strongest routing signal the package itself can provide.
+
+Skill text alone cannot guarantee selection on every turn; final invocation belongs to the Codex host and its Skill router. This repository therefore does **not** claim a technical 100% trigger guarantee.
+
+For best routing:
+
+- install it as a global Skill available to coding sessions
+- keep the Skill name and frontmatter description intact
+- avoid duplicate or conflicting versions
+- do not replace it with a global personality instruction that would pollute non-code conversation
+
+The V1.0 baseline has already been used globally in sustained local development and was selected frequently for coding work. This V2.0 candidate is tested separately against that frozen baseline before public release.
+
+## Examples
+
+### One-line utility
+
+Add `is_blank(value: str) -> bool` to an existing Python utility module.
+
+Expected: one ordinary function with one readable return expression and only the focused test normal for the project—not a validator class, strategy interface, regex subsystem, or configuration layer.
+
+### Local export
+
+Add CSV export to a one-user desktop app.
+
+Expected: reuse existing data, use the standard CSV library, choose one destination path, report write failure clearly, and add the smallest repeatable check—not an export framework, queue, fallback store, plugin registry, or lifecycle state machine.
+
+### Public password reset
+
+Expected: secure random tokens, expiry, one-time use, authorization, abuse controls, and tests. Wrong use: removing real security because the app or user count is small.
+
+More boundary cases live in [`references/calibration-examples.md`](references/calibration-examples.md).
+
+## Package and installation
+
+```text
+private-house-code-v2/
+├── SKILL.md
+├── README.md
+├── references/calibration-examples.md
+└── evals/pressure-cases.md
+```
+
+The repository root is the Skill directory. During private development, copy or install this directory into the global Skill location supported by the current Codex surface, then reload that surface.
+
+The public release will include commands verified against the then-current Codex installer. Until then, this README does not pretend one filesystem path is universal across every Codex build and platform.
+
+## Evaluation and portability
+
+[`evals/pressure-cases.md`](evals/pressure-cases.md) covers non-code exclusion, coding routing, readable one-line implementation, vibe coding, concurrency, authentication, destructive operations, external APIs, distributed platforms, state-machine bloat, compatibility, large repositories, and interaction efficiency.
+
+A release candidate must reduce speculative complexity and token overhead without weakening real safety.
+
+The package is authored as a Codex-style Agent Skill. Its principles are language- and model-agnostic and may be adapted for Claude Code, GitHub Copilot, `AGENTS.md`, or other reusable-instruction systems. The first release will ship one tested Codex package rather than several speculative wrappers.
+
+## Version lineage
+
+V1.0 is frozen in a separate private archive as the original production-used baseline. This repository contains only the V2.0 candidate so installation and testing cannot accidentally load both versions at once.
+
+---
+
+## 中文说明
+
+Private House Code 是一个适合**全局加载、只在编码任务中调用**的 Codex Skill。
+
+它服务于专业程序员、初学者和非程序员 vibe coding，也适用于大型仓库里的局部修改。它要求 Codex：能用一行清晰代码完成，就不要写成五行；能用一个函数解决，就不要搭一套架构；没有现实需求或证据，就不要主动添加 fallback、双运行时、状态机和意义不明的防御。
+
+它同时要求节省用户与 Codex 的 token：任务清楚就直接做，不念检查清单，不虚空索敌，不为了显得严谨而扩大搜索、测试和解释。
+
+它绝不能削弱真实安全、事务、并发、完整性、兼容、隐私、无障碍、法律或监管边界。
+
+> **你现在大概率是在写一个功能，而不是建一座银行金库。**
+>
+> **保留真正需要的金库，不要把每一只抽屉也做成防爆门。**
