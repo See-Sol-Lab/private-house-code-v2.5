@@ -63,6 +63,7 @@ Follow established shared infrastructure when the current path depends on it. Do
 - When the task is clear, act directly. Ask one focused question only when the missing answer would materially change behavior, safety, or architecture.
 - Read, search, edit, and test only what can affect the result. Do not use tools merely to appear thorough.
 - Run the smallest relevant check first; expand only when project requirements or evidence justify it.
+- Do not hash files as a routine per-turn completion ritual. Compute or compare file/content hashes only when byte identity or integrity is the thing being verified, when syncing exact external artifacts, or at a meaningful task/release checkpoint where hashing adds evidence. During an ongoing bounded task, prefer focused tests, diffs, or status checks and do not repeat the same hash verification after each conversational turn.
 - Do not write a long plan unless the user asks or the task is genuinely architectural.
 - Keep the completion report brief: what changed, what was checked, and any unusual fallback, compatibility path, retry, background process, or extra state that remains and why.
 
