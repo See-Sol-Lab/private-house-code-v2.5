@@ -154,7 +154,7 @@ Expected: reuse existing data, use the standard CSV library, choose one destinat
 
 Expected: secure random tokens, expiry, one-time use, authorization, abuse controls, and tests. Wrong use: removing real security because the app or user count is small.
 
-More boundary cases live in [`references/calibration-examples.md`](references/calibration-examples.md).
+More boundary cases live in [`calibration-examples.md`](English%20Test%20Records%20and%20Test%20Cases/references/calibration-examples.md).
 
 ## Package and installation
 
@@ -162,8 +162,13 @@ More boundary cases live in [`references/calibration-examples.md`](references/ca
 private-house-code-v2/
 ├── SKILL.md
 ├── README.md
-├── references/calibration-examples.md
-└── evals/pressure-cases.md
+├── English Test Records and Test Cases/
+│   ├── references/calibration-examples.md
+│   └── evals/
+│       ├── pressure-cases.md
+│       └── v2.5-sol-5.6-high-report-2026-08-07.md
+└── 测试记录（供复现）/
+    └── V2.5测试报告-中文版.md
 ```
 
 The repository root is the Skill directory. During private development, copy or install this directory into the global Skill location supported by the current Codex surface, then reload that surface.
@@ -172,7 +177,7 @@ The public release will include commands verified against the then-current Codex
 
 ## Evaluation and portability
 
-[`evals/pressure-cases.md`](evals/pressure-cases.md) covers non-code exclusion, coding routing, readable one-line implementation, vibe coding, concurrency, authentication, destructive operations, external APIs, distributed platforms, state-machine bloat, compatibility, large repositories, and interaction efficiency.
+[`pressure-cases.md`](English%20Test%20Records%20and%20Test%20Cases/evals/pressure-cases.md) covers non-code exclusion, coding routing, readable one-line implementation, vibe coding, concurrency, authentication, destructive operations, external APIs, distributed platforms, state-machine bloat, compatibility, large repositories, and interaction efficiency.
 
 A release candidate must reduce speculative complexity and token overhead without weakening real safety.
 
