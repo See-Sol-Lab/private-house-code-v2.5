@@ -53,7 +53,7 @@ Private House Code changes the default:
 
 > **Every piece of complexity must be paid for by a current requirement, an observed failure, an existing contract, or a credible risk.**
 
-**Status:** V2.0 private test candidate.
+**Status:** Public release v2.5 · DOI: [10.5281/zenodo.21836206](https://doi.org/10.5281/zenodo.21836206).
 
 ## The five product promises
 
@@ -136,7 +136,7 @@ For best routing:
 - avoid duplicate or conflicting versions
 - do not replace it with a global personality instruction that would pollute non-code conversation
 
-The V1.0 baseline has already been used globally in sustained local development and was selected frequently for coding work. This V2.0 candidate is tested separately against that frozen baseline before public release.
+The V1.0 baseline was used globally in sustained local development. The public v2.5 release was tested separately against that frozen baseline and includes reproducible evaluation records in this repository.
 
 ## Examples
 
@@ -161,33 +161,46 @@ More boundary cases live in [`calibration-examples.md`](English%20Test%20Records
 ## Package and installation
 
 ```text
-private-house-code-v2/
+private-house-code-v2.5/
 ├── SKILL.md
 ├── README.md
+├── CITATION.cff
+├── LICENSE
+├── 安装skill的全局配套.md
 ├── English Test Records and Test Cases/
-│   ├── references/calibration-examples.md
+│   ├── references/
+│   │   └── calibration-examples.md
 │   └── evals/
 │       ├── pressure-cases.md
 │       └── v2.5-sol-5.6-high-report-2026-08-07.md
 └── 测试记录（供复现）/
-    └── V2.5测试报告-中文版.md
+    ├── V2.5测试报告-中文版.md
+    ├── 1-5题带SKILL测试记录.md
+    ├── 1-5题裸机（卸载skill）.md
+    ├── 10-14题带SKILL测试记录.md
+    ├── 10-14题裸机（卸载skill).md
+    ├── 中间几题.txt
+    ├── 1.png
+    ├── 2.png
+    ├── 3.png
+    └── 4.png
 ```
 
-The repository root is the Skill directory. During private development, copy or install this directory into the global Skill location supported by the current Codex surface, then reload that surface.
+The repository root is the released Skill directory. Install or copy it into the global Skill location supported by your current Codex surface, then reload that surface. See [`安装skill的全局配套.md`](安装skill的全局配套.md) for the companion global-install notes.
 
-The public release will include commands verified against the then-current Codex installer. Until then, this README does not pretend one filesystem path is universal across every Codex build and platform.
+Codex installation paths and host behavior can vary by surface and build, so this README does not claim one universal filesystem path.
 
 ## Evaluation and portability
 
 [`pressure-cases.md`](English%20Test%20Records%20and%20Test%20Cases/evals/pressure-cases.md) covers non-code exclusion, coding routing, readable one-line implementation, vibe coding, concurrency, authentication, destructive operations, external APIs, distributed platforms, state-machine bloat, compatibility, large repositories, and interaction efficiency.
 
-A release candidate must reduce speculative complexity and token overhead without weakening real safety.
+The v2.5 release is designed to reduce speculative complexity and token overhead without weakening real safety.
 
-The package is authored as a Codex-style Agent Skill. Its principles are language- and model-agnostic and may be adapted for Claude Code, GitHub Copilot, `AGENTS.md`, or other reusable-instruction systems. The first release will ship one tested Codex package rather than several speculative wrappers.
+The package is authored as a Codex-style Agent Skill. Its principles are language- and model-agnostic and may be adapted for Claude Code, GitHub Copilot, `AGENTS.md`, or other reusable-instruction systems. The v2.5 release ships one tested Codex package rather than several speculative wrappers.
 
 ## Version lineage
 
-V1.0 is frozen in a separate private archive as the original production-used baseline. This repository contains only the V2.0 candidate so installation and testing cannot accidentally load both versions at once.
+V1.0 is frozen in a separate private archive as the original production-used baseline. V2.0 was an intermediate test candidate. After smoke testing identified two wording issues, the Skill was adjusted and re-tested as v2.5. This repository contains the public v2.5 release; the V1.0 baseline remains separate to avoid accidental duplicate loading.
 
 ## License and attribution / 许可与署名
 
