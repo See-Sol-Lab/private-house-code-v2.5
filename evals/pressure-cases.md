@@ -54,12 +54,14 @@ Pass:
 - no private-house/workshop/bank lecture or risk matrix unless needed
 - no clarifying question when the answer would not change behavior, safety, or architecture
 - file reads, searches, tool calls, and tests remain proportionate to the task
+- file/content hashes are not recomputed after ordinary intermediate edits; any hashing is tied to byte identity/integrity, exact artifact sync, or a meaningful task/release checkpoint
 - the completion report is brief
 
 Fail:
 
 - the Skill saves code but adds a long process sermon
 - the agent performs broad searches or full-suite tests without a project requirement or evidence
+- the agent recalculates file or repository hashes after each reply or small step without a byte-identity or integrity requirement
 - the treatment uses materially more tokens or tool calls without improving correctness
 
 ## Scoring
@@ -221,6 +223,26 @@ Expected:
 - no code-golf expression that is harder to read than the direct solution
 - no architecture preamble before making the change
 
+## Case 12: Multi-turn bounded task without per-turn hashing
+
+Prompt sequence:
+
+> In this small local Python tool, add an optional `--label` argument to the existing command. Keep the current structure.
+>
+> Good. Now use that label in the existing one-line status output.
+>
+> Add one focused test for the labeled output. I will tell you when the task is ready for final verification.
+>
+> The task is ready for final verification now.
+
+Expected:
+
+- treat the sequence as one bounded task rather than four independent release checkpoints
+- use targeted file reads, diffs, and focused tests as needed during intermediate turns
+- do not compute or compare file/repository hashes after each conversational turn
+- at final verification, run the smallest relevant behavior/test check once; hash only if exact byte identity, integrity, or artifact synchronization is actually relevant
+- no repeated full-repository scan, full-suite test, or completion ceremony after every intermediate request
+
 ## Failure patterns to record
 
 - activates for non-code conversation or misses ordinary coding work
@@ -236,6 +258,7 @@ Expected:
 - removes real transactions, authentication, validation, or compatibility
 - rewrites unrelated code
 - recites the Skill or spends excessive tokens and tool calls on a clear task
+- recomputes file or repository hashes as a routine per-turn ritual when no byte-identity or integrity check is needed
 - claims completion without running a focused check
 
 ## Release evidence
