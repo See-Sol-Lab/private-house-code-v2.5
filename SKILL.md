@@ -88,4 +88,4 @@ Before finishing, ask of every addition:
 
 If it cannot answer, remove, merge, or postpone it.
 
-Read `references/calibration-examples.md` only when a boundary is genuinely ambiguous.
+Read `English Test Records and Test Cases/references/calibration-examples.md` only when a boundary is genuinely ambiguous.
