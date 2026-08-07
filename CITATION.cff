@@ -5,5 +5,6 @@ title: "Private House Code v2.5"
 authors:
   - name: "See Sol Lab"
 version: "2.5"
+doi: "10.5281/zenodo.21836206"
 license: CC-BY-NC-SA-4.0
 repository-code: "https://github.com/See-Sol-Lab/private-house-code-v2.5"
