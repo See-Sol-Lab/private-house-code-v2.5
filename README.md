@@ -1,8 +1,47 @@
-# Private House Code
+# Private House Code/私宅级代码约束
 
 > **Write the feature. Do not build a bank around it.**
 >
-> **写一个功能，不要在它外面修一座银行金库。**
+> **写一个功能就写功能，不要在它外面修一座银行金库。**
+
+## 中文说明
+Private House Code 是一个适合**全局加载**的日常编码 Skill，根据实测，装skill后的费用总消耗比原装codex低约 47.9%（数据见报告）。  
+**写这玩意最初时间是7月20号，我实在是受不了5.6烧额度了，1步10哈希，一轮50测试，真是受不了那个fallback**  
+所以写完自用了半个月，效果很好，遂公开。
+## 创作理念：
+1. 写一个小功能，就不要整成银行金库
+2. 能一行实现的就一行
+3. 但是一行实现不了的，不许刻意砍
+4. 执行skill，且不降质、不降智
+5. git上面高星的类似项目有没有已经写好的？8.6 搜了一次，暂时没有
+6. 多快好省 + 高质量完成
+7. 傻瓜式，大佬和小白都能用，至于用了怎么改我就管了，大佬建议自改来适应全局，小白建议别自己乱改
+8. 企业级巨型架构不适用，写大项目的别用啊，除非你改的很好+测试没问题再用
+
+项目里面有一整套测试题，包括测试情况，测试费用，题目，记录等等，感兴趣的可以自己去跑或者复现啊，  
+总之节约近一半是真的。  
+为什么版本号是V2.5呢，因为7.20自用的版本是V1.0，8.4优化了第二版，XHS有网友希望我分享，出于负责和严谨，昨天晚上出了那套测试题先跑V1.0和V2.0的smoke，发现两句有点小问题，重新调整后变成现在的V2.5；  
+8.7早上开始又再重跑一次全套测试，确认得到的数据没问题、没有影响5.6，而且效果非常好，于是封装+公开仓库了。
+
+该Skill适用于：
+
+- 专业程序员的日常功能、修复、维护和局部重构
+- 初学者与非程序员的 vibe coding
+- 个人应用、脚本、CLI、本地工具和原型
+- 内部工具、小团队服务
+- 大型代码库中边界明确的小改动
+
+以下情况不适用：
+
+- 真正的企业级架构设计
+- 公共多租户系统
+- 金钱、健康、安全、法律与不可逆损失
+- 身份认证、权限、密钥和账户恢复等真实安全边界
+- 其他巨型架构和公有项目
+
+## English Description
+
+**Private House Code is a global coding Skill for keeping AI-generated code complete, maintainable, and proportionate to the real task.**
 
 Private House Code is a global coding Skill for Codex. It keeps ordinary feature work direct, maintainable, and proportionate to the task that actually exists.
 
@@ -145,16 +184,3 @@ V1.0 is frozen in a separate private archive as the original production-used bas
 
 ---
 
-## 中文说明
-
-Private House Code 是一个适合**全局加载、只在编码任务中调用**的 Codex Skill。
-
-它服务于专业程序员、初学者和非程序员 vibe coding，也适用于大型仓库里的局部修改。它要求 Codex：能用一行清晰代码完成，就不要写成五行；能用一个函数解决，就不要搭一套架构；没有现实需求或证据，就不要主动添加 fallback、双运行时、状态机和意义不明的防御。
-
-它同时要求节省用户与 Codex 的 token：任务清楚就直接做，不念检查清单，不虚空索敌，不为了显得严谨而扩大搜索、测试和解释。
-
-它绝不能削弱真实安全、事务、并发、完整性、兼容、隐私、无障碍、法律或监管边界。
-
-> **你现在大概率是在写一个功能，而不是建一座银行金库。**
->
-> **保留真正需要的金库，不要把每一只抽屉也做成防爆门。**
