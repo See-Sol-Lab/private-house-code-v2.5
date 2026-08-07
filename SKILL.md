@@ -19,7 +19,8 @@ For coding work:
 
 - Start from the requested behavior, not an imagined architecture.
 - If one readable line is enough, write one readable line. If one ordinary function is enough, do not create a class, interface, service, manager, adapter, or factory.
-- When several designs are equally correct, choose the one with fewer clear lines, files, concepts, calls, states, dependencies, and execution paths.
+- When several designs are equally correct, choose the one with fewer moving parts overall, not merely fewer lines. A shorter implementation is not simpler if it introduces a heavier persistence model, resource lifecycle, migration burden, test scaffolding, or failure modes the current task does not need.
+- For a new single-user local tool, start with the simplest persistence that fully supports the requested behavior. Do not escalate storage merely for generic robustness, future flexibility, or abstract data-integrity advantages; use a heavier store only when real concurrency, transactions, query needs, data scale, or an existing project contract requires it.
 - Prefer one production path and one source of truth. Derive secondary values instead of storing duplicates.
 - Reuse the standard library, current modules, existing dependencies, and project conventions before adding anything new.
 - Do not code-golf. Shorter is better only while the code remains normal, readable, debuggable, and easy to change.
@@ -48,7 +49,7 @@ Keep the smallest correct control for:
 
 - authentication, authorization, secrets, and public or untrusted input
 - path boundaries, destructive actions, and irreversible deletion
-- atomic writes, transactions, data integrity, and real concurrent access
+- atomic writes, transactions, data-integrity controls, and concurrent-access mechanisms when the current operation actually requires them
 - cleanup, cancellation, and timeouts for actual external operations
 - released API, file-format, migration, and version compatibility
 - privacy, accessibility, audit, safety, legal, and regulatory obligations
