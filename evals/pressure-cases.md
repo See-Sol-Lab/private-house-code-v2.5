@@ -2,56 +2,132 @@
 
 These cases test whether Private House Code reduces speculative complexity and interaction overhead while preserving correctness, real safety, existing contracts, and maintainability.
 
-The benchmark is intentionally small. Each case should test more than one principle so the suite remains cheap enough to rerun after every meaningful revision.
+The benchmark is intentionally small. Phase 1 is a cheap private smoke test for V1 vs V2. Phase 2 is the broader public No-Skill vs V2 benchmark.
 
 ## Test protocol
 
-Keep the coding agent, model, host build, temporary project, starting files, and prompt text the same between variants whenever possible. Use a fresh conversation for each case, and make only one Private House Code version available at a time.
+Keep the coding agent, model, host build, operating system, permissions, and prompt text the same between variants whenever possible.
 
 Do not tell the agent which version is being compared or that the goal is to produce less code. The prompts should stand on their own.
 
-Cases that assume an existing app, module, UI, database, or test file must run against a prepared fixture containing those starting files. An empty or incorrect workspace makes the run invalid and it should not be scored. Reset the fixture to the same starting state before each V1, V2, or No-Skill run.
+### Phase 1 environment rule
 
-For the private smoke comparison, use the Chinese prompts below exactly as written for both V1 and V2. A later translated benchmark is a separate prompt set and should not be mixed into the same comparison.
+Phase 1 intentionally starts from an empty project directory so the comparison measures what architecture each Skill creates from nothing and how expensive that architecture becomes as a small app grows.
 
-### Phase 1 — private smoke comparison: V1 vs V2
+- Run the full five-turn sequence once with frozen V1 and once with V2.
+- Start each variant in a different completely empty directory.
+- Start one fresh conversation for V1 and one fresh conversation for V2, then keep all five turns for that variant in the same conversation.
+- Do not copy code, files, summaries, or implementation choices from one variant to the other.
+- Use the same model, host build, permissions, and prompts for both variants.
+- If one run starts with extra files, a different model, or a different execution environment, the comparison is invalid.
 
-Purpose: answer one question first — is V2 materially better than the frozen V1 baseline?
+### Phase 2 environment rule
 
-Run these five high-signal cases with V1, then rerun the same cases with V2:
+Phase 2 cases may use prepared fixtures when a prompt assumes an existing app, module, database, UI, or test file. Reset each fixture to the same starting state before every No-Skill and V2 run, and use a fresh conversation for each case.
 
-- Case 1 — local vibe-coded app
-- Case 3 — public password reset
-- Case 4 — small change inside a large existing architecture
-- Case 6 — tiny bug in an ugly module
-- Case 7 — multi-turn flaky API task and verification discipline
+For the current private comparison, use the Chinese prompts below exactly as written. A translated public benchmark is a separate prompt set and should not be mixed into the same comparison.
 
-Record for each run:
+## Phase 1 — private smoke comparison: V1 vs V2
 
-- correctness and user-visible behavior
-- files changed or added
-- new dependencies, abstractions, stored states, execution paths, background processes, fallbacks, or compatibility paths
-- focused tests or checks run
-- tool calls and broad repository scans
-- hash calculations or byte-identity checks
-- repeated full-suite tests or repeated completion rituals
-- visible planning/report overhead
+Purpose: answer one question first — when the same small novice-facing application is built from nothing and then extended over several turns, is V2 materially simpler, cheaper, and easier to maintain than frozen V1 without losing behavior or reliability?
+
+The app is deliberately a visible desktop application rather than a CLI because the target user is a non-programmer asking an AI coding agent to make something they can actually use.
+
+### Turn 1 — build the smallest useful app from nothing
+
+Prompt:
+
+> 我是编程小白。请在这个空目录里从零做一个只在我自己电脑上运行的 Python 待办小应用。我要一个能直接看到和操作的桌面窗口：可以输入待办并添加到列表里，也可以把待办标记为已完成；关掉应用再重新打开，之前的待办还要在。不需要联网。请直接把它做出来，并告诉我以后怎么打开它。
+
+What this tests:
+
+- whether the agent chooses a direct local desktop implementation rather than inventing a web stack, server, database, framework layers, or deployment machinery
+- whether persistence has one obvious local source of truth
+- whether a novice receives a usable app and a short launch instruction rather than an architecture lecture
+- initial file count, dependency count, abstraction count, tool calls, setup work, and verification overhead
+
+### Turn 2 — add one ordinary feature
+
+Prompt:
+
+> 给每条待办增加一个可选标签，比如“工作”“生活”。添加待办时可以不填标签；列表里有标签的就显示出来，没有标签的保持原样。现有待办功能不要变。
+
+What this tests:
+
+- whether one optional field stays a small change to the existing data/UI path
+- whether the agent invents schema frameworks, model layers, migration systems, registries, or duplicate storage for a tiny local feature
+- whether existing saved data still loads sensibly without speculative compatibility machinery
+
+### Turn 3 — add export and one small preference
+
+Prompt:
+
+> 再加一个“导出 CSV”按钮。点它时让我选择保存目录，导出当前待办；成功导出以后记住这次目录，下次导出时默认从这个目录开始。第一次使用时没有历史目录也要正常工作。
+
+What this tests:
+
+- whether the agent uses a direct CSV path and the simplest existing persistence mechanism for the remembered directory
+- whether it creates a second source of truth, settings subsystem, export framework, background job, retry system, or migration machinery without need
+- whether failures are reported clearly instead of being hidden behind fallback chains
+
+### Turn 4 — make a tiny UI change and add a focused test
+
+Prompt:
+
+> 再做一个很小的改动：窗口标题里显示当前“未完成待办”的数量，例如 `待办 (3)`；新增待办、完成待办以后这个数字要立刻更新。给这个行为补一个最小的针对性测试。先做到这里，我下一条再让你做最终检查。
+
+What this tests:
+
+- whether a tiny follow-up stays tiny instead of triggering drive-by refactors or new abstractions
+- whether the agent can add one focused test without building a test framework around one behavior
+- whether it respects the explicit fact that the task is not yet at final verification
+- whether it nevertheless performs repeated broad scans, full-suite tests, hash calculations, or completion ceremonies after this intermediate turn
+
+### Turn 5 — final verification checkpoint
+
+Prompt:
+
+> 好了，现在做最终检查，确认前面这些功能都能正常工作。
+
+What this tests:
+
+- whether final verification is proportionate to the actual app
+- whether focused behavior/tests are preferred over repeated whole-project ceremony
+- whether file/repository hashes are used only when byte identity or integrity is actually relevant
+- whether the completion report is short and useful to a non-programmer
+
+### Phase 1 record sheet
+
+For each V1 and V2 run, record:
+
+- all requested behaviors working or not working
+- total files created and final lines of application/test code
+- added third-party dependencies
+- classes, services, managers, repositories, adapters, factories, registries, configuration layers, or other abstractions introduced
+- stored state locations and number of sources of truth
+- alternate execution paths, fallbacks, retries, background processes, or compatibility machinery
+- tool calls, broad searches, repeated file reads, and full-project scans
+- tests/checks run after each turn
+- hash calculations or byte-identity checks after each turn
+- visible planning and completion-report overhead after each turn
 - unsupported assumptions
-- quota or usage delta when the host exposes it
+- elapsed work time and quota/usage delta when the host exposes them
 
-If V2 clearly reduces unnecessary complexity and interaction overhead without regressing correctness, safety, or real compatibility, continue to Phase 2. If it does not, refine V2 and rerun the same five cases before spending more benchmark budget.
+V2 passes the private smoke stage when it delivers the same requested behavior as V1 while materially reducing unnecessary structure or interaction overhead, and does not regress reliability, maintainability, or focused verification.
 
-### Phase 2 — public benchmark: No Skill vs V2
+Do not refine V2 after seeing only one favorable sub-result. If a meaningful failure appears, document it, refine V2 once, reset both comparison directories, and rerun the same frozen five-turn sequence.
+
+## Phase 2 — public benchmark: No Skill vs V2
 
 For a public release, compare the coding agent with no Private House Code available against the final V2 on all seven cases below, plus the routing gates.
 
-Use the same prompts, fixtures, model, and host build for both sides. Preserve anonymized raw outputs or structured notes so the claims can be audited later.
+Use the same prompts, fixtures, model, host build, and environment for both sides. Preserve anonymized raw outputs or structured notes so the claims can be audited later.
 
 The public comparison should answer: what changes when an ordinary coding agent is given Private House Code V2?
 
 ## Routing gates
 
-Routing gates are pass/fail and should be tested from fresh conversations when possible. They are not part of the Phase 1 smoke run unless routing itself changed.
+Routing gates are pass/fail and should be tested from fresh conversations.
 
 ### Gate A — non-code exclusion
 
