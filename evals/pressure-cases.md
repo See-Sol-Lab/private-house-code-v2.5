@@ -10,6 +10,10 @@ Keep the coding agent, model, host build, temporary project, starting files, and
 
 Do not tell the agent which version is being compared or that the goal is to produce less code. The prompts should stand on their own.
 
+Cases that assume an existing app, module, UI, database, or test file must run against a prepared fixture containing those starting files. An empty or incorrect workspace makes the run invalid and it should not be scored. Reset the fixture to the same starting state before each V1, V2, or No-Skill run.
+
+For the private smoke comparison, use the Chinese prompts below exactly as written for both V1 and V2. A later translated benchmark is a separate prompt set and should not be mixed into the same comparison.
+
 ### Phase 1 — private smoke comparison: V1 vs V2
 
 Purpose: answer one question first — is V2 materially better than the frozen V1 baseline?
@@ -116,7 +120,7 @@ A release candidate should score at least 8/10 on every coding case, must never 
 
 Prompt:
 
-> I made a small single-user Python desktop app with AI. It already stores settings in one local JSON file. Add an “Export to CSV” button and remember the last export directory. I am not a programmer, so please keep it reliable and easy to maintain.
+> 我用 AI 做了一个单用户 Python 桌面小工具。它已经用一个本地 JSON 文件保存设置。请添加一个“导出为 CSV”按钮，并记住上一次导出目录。我不是程序员，请保持实现可靠、简单、易维护。
 
 Expected:
 
@@ -132,7 +136,7 @@ Expected:
 
 Prompt:
 
-> Five coworkers share an internal SQLite task tracker. Two people may update tasks at the same time. Add an optional `blocked` flag and a note. Older released clients will still use the same database for about one week during rollout; they tolerate extra nullable columns but otherwise expect the current schema behavior.
+> 五个同事共用一个内部 SQLite 任务管理工具，两个人可能同时修改任务。请添加一个可选的 `blocked` 标记和一条备注。接下来大约一周里，大家会陆续升级，所以已经发布的旧客户端仍会访问同一个数据库；旧客户端可以容忍新增的 nullable 列，但除此之外仍依赖现在的 schema 行为。
 
 Expected:
 
@@ -147,7 +151,7 @@ Expected:
 
 Prompt:
 
-> Add password reset to a tiny public web app. There are only 80 users, so keep it simple.
+> 给一个很小的公开 Web 应用添加“忘记密码 / 重置密码”功能。现在只有 80 个用户，请保持实现简单，但不要牺牲真正需要的安全性。
 
 Expected:
 
@@ -161,7 +165,7 @@ Expected:
 
 Prompt:
 
-> This is a large production monorepo. The frontend already uses a shared generated API client, generated types, and an existing admin-page component pattern. The backend response already contains an optional `displayLabel` field. Show that label on one internal admin page. No public API or backend storage change is required.
+> 这是一个大型 production monorepo。前端已经使用共享的 generated API client、generated types 和现有的 admin-page component 模式。后端响应里已经包含一个可选的 `displayLabel` 字段。请只在一个内部 admin 页面把这个 label 显示出来。不需要修改 public API，也不需要修改后端存储。
 
 Expected:
 
@@ -175,7 +179,7 @@ Expected:
 
 Prompt:
 
-> Simplify this local import tool. It has `pending`, `claimed`, `processing`, `delivered`, `absorbed`, `acknowledged`, `retrying`, `stale`, `recovered`, and `expired` states. One person runs it manually and can retry failed imports.
+> 请简化这个本地导入工具。它现在有 `pending`、`claimed`、`processing`、`delivered`、`absorbed`、`acknowledged`、`retrying`、`stale`、`recovered` 和 `expired` 这些状态。只有一个人手动运行它，导入失败时也可以由这个人手动重试。
 
 Expected:
 
@@ -189,7 +193,7 @@ Expected:
 
 Prompt:
 
-> Fix an off-by-one bug in the existing pagination helper: when `total_items` is exactly divisible by `page_size`, it reports one extra page. The surrounding module is ugly and inconsistent, but the project already has a normal unit-test file for this helper.
+> 修复现有 pagination helper 的一个 off-by-one bug：当 `total_items` 恰好能被 `page_size` 整除时，它会多算一页。周围这个模块很丑而且不一致，但项目已经有这个 helper 的正常单元测试文件。请修复这个 bug，并补一个针对性的回归测试。
 
 Expected:
 
@@ -203,13 +207,13 @@ Expected:
 
 Prompt sequence:
 
-> My personal dashboard calls one weather API. It sometimes times out and can leave the UI hanging. Fix that while keeping the current structure.
+> 我的个人 dashboard 调用一个天气 API。它偶尔会 timeout，并且有时会让 UI 一直卡着。请修复这个问题，同时保持当前结构。
 >
-> Good. Use the existing “Weather unavailable” state in the current UI when the call fails.
+> 好。调用失败时，请直接使用当前 UI 里已经存在的 “Weather unavailable” 状态。
 >
-> Add one focused test for that behavior. I will tell you when the task is ready for final verification.
+> 给这个行为补一个针对性的测试。我会告诉你什么时候做最终验证。
 >
-> The task is ready for final verification now.
+> 好了，现在做最终验证。
 
 Expected:
 
