@@ -89,3 +89,7 @@ Before finishing, ask of every addition:
 If it cannot answer, remove, merge, or postpone it.
 
 Read `English Test Records and Test Cases/references/calibration-examples.md` only when a boundary is genuinely ambiguous.
+
+---
+
+> **Project provenance / 项目来源：** Private House Code was originally created and is maintained by [See-Sol-Lab](https://github.com/See-Sol-Lab). Canonical repository / 官方原始仓库: [private-house-code-v2.5](https://github.com/See-Sol-Lab/private-house-code-v2.5). Licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).

@@ -187,5 +187,13 @@ The package is authored as a Codex-style Agent Skill. Its principles are languag
 
 V1.0 is frozen in a separate private archive as the original production-used baseline. This repository contains only the V2.0 candidate so installation and testing cannot accidentally load both versions at once.
 
+## License and attribution / 许可与署名
+
+Copyright © 2026 [See-Sol-Lab](https://github.com/See-Sol-Lab).
+
+This repository is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](LICENSE). You may use, share, and adapt the material with attribution for non-commercial purposes. Adapted material must use the same license, and changes must be indicated.
+
+本仓库采用[知识共享署名—非商业性使用—相同方式共享 4.0 国际许可协议](LICENSE)。允许在保留署名的前提下非商业使用、分享与改编；改编版本须采用相同许可，并注明所作修改。
+
 ---
 
