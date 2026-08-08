@@ -199,3 +199,7 @@ Private House Code 为独立开发项目，未复用 Ponytail 的文本或规则
 - Private House Code 核心 Skill：<https://github.com/See-Sol-Lab/private-house-code-v2.5/blob/main/SKILL.md>
 - Ponytail：<https://github.com/DietrichGebert/ponytail>
 - Ponytail 核心 Skill：<https://github.com/DietrichGebert/ponytail/blob/main/skills/ponytail/SKILL.md>
+
+---
+
+> 最后，一点作者自己的感慨：后来知道 Ponytail 的存在时，我反而觉得有点有趣——原来我们只是遇到了类似的烦恼，然后各自在自己的使用场景里做出了自己的解决方案。作者身份上的区别大概只是：Ponytail 是大佬写的，我是一个被 Sol 的过度测试、fallback 和重复验证折腾到受不了的小白。起点不同、路径不同、侧重点也不同，最后却都想让 AI 少做一点无意义的事，把真正需要的东西好好做完。某种意义上，也算殊途同归：各自解决了自己的烦恼。
