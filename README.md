@@ -206,6 +206,8 @@ V1.0 is frozen in a separate private archive as the original production-used bas
 
 本项目发布后，经社区成员提醒，我们了解到 [Ponytail](https://github.com/DietrichGebert/ponytail) 也是“约束 AI 过度工程”问题域中的重要先行项目。两者共享 YAGNI、优先复用现有能力、避免无需求抽象并保留真实安全边界等工程原则，但目标和机制不同：Ponytail 以“需求必要性 → 复用 → 标准库 → 平台原生能力 → 已有依赖 → 最小实现”的方案选择梯子为核心；Private House Code 则以“每一层复杂度必须由当前需求、现有契约、已观察故障或可信风险付费”为核心，重点约束 GPT-5.6 Sol/Codex 的 fallback、双路径、重复事实源、状态机、过度搜索/测试/哈希和多轮停止行为。Private House Code 为独立开发项目，未复用 Ponytail 的文本或规则结构。两个项目的目标和思路并不完全一致，欢迎对项目重叠度进行公开审阅。
 
+详细对比见：[《Private House Code 与 Ponytail：相似度与差异分析》](与Ponytail的相似度与差异分析.md)。
+
 ## License and attribution / 许可与署名
 
 Copyright © 2026 [See-Sol-Lab](https://github.com/See-Sol-Lab).
