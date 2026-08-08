@@ -1,8 +1,8 @@
 # Private House Code 与 Ponytail：相似度与差异分析
 
-> 本文用于说明 [Private House Code](https://github.com/See-Sol-Lab/private-house-code-v2.5) 与 [Ponytail](https://github.com/DietrichGebert/ponytail) 的重合部分、核心差异、时间线与测试重点。目的不是否认二者处于同一问题域，而是把“同赛道”与“同一实现/改写”区分开。
+> 本文用于说明 [Private House Code](https://github.com/See-Sol-Lab/private-house-code-v2.5) 与 [Ponytail](https://github.com/DietrichGebert/ponytail) 的重合部分、核心差异、时间线与测试重点，解读各自独立开发的区别，以及体现查重结果，欢迎公开复核
 >
-> 结论基于两边公开仓库、核心 `SKILL.md`、提交时间线与公开测试材料的对照。本文不是法律意见，欢迎公开复核。
+> 结论基于两边公开仓库、核心 `SKILL.md`、提交时间线与公开测试材料的对照。
 
 ## 结论先说
 
@@ -10,15 +10,16 @@
 
 但两者的核心机制并不相同：
 
-- **Ponytail 更像“方案最小化器”**：通过一条固定 ladder，优先判断需求是否必要，再依次考虑仓库已有能力、标准库、平台原生能力、已有依赖、一行实现，最后才写最小代码。
-- **Private House Code 更像“面向 GPT-5.6 Sol/Codex 的复杂度与验证预算控制器”**：要求每一层新增复杂度都由当前需求、已观察故障、现有契约或可信风险来支付，并进一步约束工具调用、测试扩张、重复哈希、fallback、双路径、重复事实源、状态机和多轮停止行为。
+- **Ponytail 更像“AI编程方案最小化器”**：通过一条固定 ladder，优先判断需求是否必要，再依次考虑仓库已有能力、标准库、平台原生能力、已有依赖、一行实现，最后才写最小代码，思路更大。
+- **Private House Code 更像“面向 GPT-5.6 Sol/Codex 的验证预算控制器”**：要求每一层新增复杂度都由当前需求、已观察故障、现有契约或可信风险来支付，并进一步约束工具调用、测试扩张、重复哈希、fallback、双路径、重复事实源、状态机和多轮停止行为。
 
 最简短的区别可以概括为：
 
-> **Ponytail 问：还能不能少写一点？**  
-> **Private House Code 问：这一点复杂度到底是谁付的钱？**
+> **Ponytail 问：所有AI，回答我，还能不能少写一点？**  
+> **Private House Code 问：GPT5.6，你刚才这一轮花活到底要花我多少钱？**
 
 因此，把两个项目归入同一设计家族是合理的；把 Private House Code 视为 Ponytail 的文本改写或规则复刻，则与公开材料不符。
+人话就是，看起来似乎实现了类似目标，但查重并不支持高度重叠，而更像是全科医生大牛，与某个专科医生的区别。
 
 ## 为什么 Codex / GPT 容易判断“高度类似”
 
@@ -112,7 +113,7 @@ Private House Code 还明确写出：
 
 ## Ponytail 明显更强的地方
 
-公平比较也必须承认 Ponytail 已经做得更成熟的部分：
+公平比较必须承认 Ponytail 做得更成熟的部分：
 
 - “已有代码 → 标准库 → 平台原生能力 → 已安装依赖 → 一行 → 最小实现”的 ladder 非常清晰；
 - 对 bug fix 明确强调先找调用者、修根因；
